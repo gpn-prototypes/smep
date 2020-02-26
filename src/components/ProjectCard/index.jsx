@@ -1,6 +1,7 @@
 import React from 'react';
 import block from 'bem-cn';
 // import { IconArrowLeft } from '@gpn-design/uikit';
+// import { Text } from '@gpn-design/uikit';
 
 import './styles.css';
 
@@ -16,6 +17,7 @@ const ProjectCard = (props) => {
       }>
         <p className='text text_size_m text_view_primary text_transform_uppercase text_spacing_xs'>{props.number}</p>
         <p className='text text_size_m text_view_secondary'>{props.company}</p>
+        {/* <Text tag='p' size='m' view='secondary'>{props.company}</Text> */}
       </div>
       <h3 className={
         b('title')
