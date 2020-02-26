@@ -2,9 +2,11 @@ import React from 'react';
 import block from 'bem-cn';
 import PageHeader from '../../components/Header';
 import { Button, ChoiceGroup } from '@gpn-design/uikit';
+import ProjectCard from '../../components/ProjectCard';
 
 const main = block('main-page');
 const filter = block('filter');
+const d = block('decorator');
 
 const filterItems = {
 	types: [
@@ -40,10 +42,22 @@ const AllProjectsPage = () => {
   return (
 		<>
 			<PageHeader />
-			<main className={main()}>
-				<header className={main('header').mix('filter')}>
+			<main className={
+					d({'space-h': '3xl', 'indent-t': '2xl'})
+					.mix(main())
+				}>
+				<header className={
+						main('header')
+						.mix([
+							'filter', 
+							d({'distribute': 'between', 'vertical-align': 'center', 'indent-b': '2xl'})
+						])
+					}>
 					<div className={filter('left-side')}>
-						<h1 className='text text_size_xl text_weight_bold text_view_primary'>Проекты</h1>
+						<h1 className={
+								d({'indent-a': 'none', 'indent-r': '5xl'})
+								.mix('text text_size_xl text_weight_bold text_view_primary text_display_inline-block')
+							}>Проекты</h1>
 						<ChoiceGroup
 							isMultiple={false}
 							items={filterItems.types}
@@ -54,17 +68,24 @@ const AllProjectsPage = () => {
 						<ChoiceGroup
 							isMultiple={false}
 							items={filterItems.view}
-							wpSize="s"
+							wpSize='s'
+							className={d({'indent-r': 's'})}
 						/>
-						<Button wpSize='s' view='ghost' withIcon='left' className='decorator decorator_indent-l_m'>
+						<Button wpSize='s' view='ghost' withIcon='left'>
 							{/* <IconAdd size='xs' /> */}
 							Добавить болванку
 						</Button>
 					</div>
-					
-
-
 				</header>
+				<div className="">
+					<ProjectCard 
+						number='U190001721' 
+						company='ГПН Ямал' 
+						title='Разработка приложения СЭД «Контроль до претензионной работы» в ООО «ГАЗПРОМНЕФТЬ-ЯМАЛ»'
+						stage='Выбор'
+						status='В работе'
+					/>
+				</div>
 			</main>
 		</>
   );
