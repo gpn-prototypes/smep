@@ -1,17 +1,25 @@
-.project-card {
-  min-height: 280px;
-  max-height: 320px;
+.project-list-card {
+  position: relative;
+  height: 280px;
   padding: var(--space-m) var(--space-xl);
   border-radius: var(--space-xs);
+  box-sizing: border-box;
   background-color: var(--color-bg-default);
   box-shadow: 
     0px 4px 10px rgba( var(--color-nums-shadow), 0.09), 
     0px 13px 34px rgba( var(--color-nums-shadow), 0.05), 
     0px 60px 152px rgba( var(--color-nums-shadow), 0.03);
+}
 
-  &__title {
-    display: -webkit-box;
-    -webkit-line-clamp: 5;
-    -webkit-box-orient: vertical;
-  }
+.project-list-card__title {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+}
+
+.project-list-card__footer {
+  position: absolute;
+  left: auto;
+  bottom: var(--space-xl);
 }

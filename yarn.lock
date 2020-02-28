@@ -899,10 +899,10 @@
   resolved "https://registry.yarnpkg.com/@csstools/normalize.css/-/normalize.css-10.1.0.tgz#f0950bba18819512d42f7197e56c518aa491cf18"
   integrity sha512-ij4wRiunFfaJxjB0BdrYHIH8FxBJpOwNPhhAcunlmPdXudL1WQV1qoP9un6JsEBAgQH+7UXyyjh0g7jTxXK6tg==
 
-"@gpn-design/uikit@^0.1.7":
-  version "0.1.7"
-  resolved "https://registry.yarnpkg.com/@gpn-design/uikit/-/uikit-0.1.7.tgz#86c0a88eb24d7846dcb4199352bebc447ca6bb83"
-  integrity sha512-06LMXiq4RIatYNgSWS3iZbd5DjfXSz8lucRQQ02zL7YJYCat8j3jX9dlQUm/82wLp6ph7k4hKdvHvyA6wn/6/A==
+"@gpn-design/uikit@^0.1.11":
+  version "0.1.11"
+  resolved "https://registry.yarnpkg.com/@gpn-design/uikit/-/uikit-0.1.11.tgz#246141cab1c553dfd31dcba7d3fcfb5acd5f7595"
+  integrity sha512-RkeXJfzCXyeVGWdFAZe2IV112LMXZO4GY0r9Dvz8f8zgb/m59+3w20qV0gUd6IWqp0nQ7AhDFcf0ja7j1BaJjA==
   dependencies:
     bem-cn "^3.0.1"
     lodash "^4.17.15"
