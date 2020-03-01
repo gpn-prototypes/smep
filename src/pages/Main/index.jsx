@@ -1,16 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import block from 'bem-cn';
 import PageHeader from '../../components/Header';
 import { Text, Button, ChoiceGroup } from '@gpn-design/uikit';
 import ProjectListCard from '../../components/ProjectListCard';
 import ProjectListTableItem from '../../components/ProjectListTableItem';
-import data from './mocks.js';
 
 const main = block('main-page');
 const filter = block('filter');
 const d = block('decorator');
 
-const projects = data.main.projects;
 
 const filterItems = {
 	types: [
@@ -41,18 +39,23 @@ const filterItems = {
 	]
 };
 
-const AllProjectsPage = () => {
-	// const [layout, setLayout] = useState('grid')
+const AllProjectsPage = (props) => {
+	const { projectsList } = props;
+	const [layout, setLayout] = useState('grid');
+	
+	const layoutChanger = () => {
+		if (layout === 'grid') {
+			return 'list'
+		} else {
+			return 'grid'
+		}
+	}
 
-	// const layoutCHanger = (la) {
-
-	// }
-	const layout = 'list';
-	let projectList;
+	let projectListMarkup;
 
 	if (layout === 'grid') {
 		const grid = block('tpl-grid');
-		projectList = (
+		projectListMarkup = (
 			<div 
 				className={grid({
 					'l-ratio': '1-1-1',
@@ -61,7 +64,7 @@ const AllProjectsPage = () => {
 					'row-gap': 'half'
 				})}
 			>
-				{projects.map((project) => {
+				{projectsList.map((project) => {
 					return (
 						<ProjectListCard 
 							key={project.id}
@@ -78,7 +81,7 @@ const AllProjectsPage = () => {
 		)
 	} else {
 		const table = block('pt-table');
-		projectList = (
+		projectListMarkup = (
 			<table 
 				className={table({
 					'view': 'default',
@@ -88,39 +91,43 @@ const AllProjectsPage = () => {
 					'space-a': 'm'
 				})}
 			>
-				<tr className={table('row', {'view': 'head'})}>
-					<td className={table('col')}>
-						<Text tag='p' size='xs' view='secondary' transform='uppercase' spacing='xs'>Номер</Text>
-					</td>
-					<td className={table('col' )}>
-						<Text tag='p' size='xs' view='secondary' transform='uppercase' spacing='xs'>Название</Text>
-					</td>
-					<td className={table('col')}>
-						<Text tag='p' size='xs' view='secondary' transform='uppercase' spacing='xs'>Блок</Text>
-					</td>
-					<td className={table('col')}>
-						<Text tag='p' size='xs' view='secondary' transform='uppercase' spacing='xs'>Этап</Text>
-					</td>
-					<td className={table('col')}>
-						<Text tag='p' size='xs' view='secondary' transform='uppercase' spacing='xs'>Статус</Text>
-					</td>
-					<td className={table('col', {'align': 'right'})}>
-						<Text tag='p' size='xs' view='secondary' transform='uppercase' spacing='xs'>Экспертиза</Text>
-					</td>
-				</tr>
-				{projects.map((project) => {
-					return (
-						<ProjectListTableItem 
-							key={project.id}
-							number={project.id}
-							company={project.company} 
-							title={project.title}
-							stage={project.stage}
-							status={project.status}
-							badge={project.badge}
-						/>
-					)
-				})}
+				<thead>
+					<tr className={table('row', {'view': 'head'})}>
+						<td className={table('col')}>
+							<Text tag='p' size='xs' view='secondary' transform='uppercase' spacing='xs'>Номер</Text>
+						</td>
+						<td className={table('col' )}>
+							<Text tag='p' size='xs' view='secondary' transform='uppercase' spacing='xs'>Название</Text>
+						</td>
+						<td className={table('col')}>
+							<Text tag='p' size='xs' view='secondary' transform='uppercase' spacing='xs'>Блок</Text>
+						</td>
+						<td className={table('col')}>
+							<Text tag='p' size='xs' view='secondary' transform='uppercase' spacing='xs'>Этап</Text>
+						</td>
+						<td className={table('col')}>
+							<Text tag='p' size='xs' view='secondary' transform='uppercase' spacing='xs'>Статус</Text>
+						</td>
+						<td className={table('col', {'align': 'right'})}>
+							<Text tag='p' size='xs' view='secondary' transform='uppercase' spacing='xs'>Экспертиза</Text>
+						</td>
+					</tr>
+				</thead>
+				<tbody>
+					{projectsList.map((project) => {
+						return (
+							<ProjectListTableItem 
+								key={project.id}
+								number={project.id}
+								company={project.company} 
+								title={project.title}
+								stage={project.stage}
+								status={project.status}
+								badge={project.badge}
+							/>
+						)
+					})}
+				</tbody>
 			</table>
 		)
 	}
@@ -151,20 +158,26 @@ const AllProjectsPage = () => {
 						/>
 					</div>
 					<div className={filter('right-side')}>
-						<ChoiceGroup
+						<Button 
+							wpSize='s' view='ghost' 
+							className={d({'indent-r': 's'})} 
+							onClick={() => setLayout(layoutChanger)}
+						>
+							Вид списка
+						</Button>
+						{/* <ChoiceGroup
 							isMultiple={false}
 							items={filterItems.view}
 							wpSize='s'
 							className={d({'indent-r': 's'})}
-						/>
+						/> */}
 						<Button wpSize='s' view='ghost' withIcon='left'>
-							{/* <IconAdd size='xs' /> */}
 							Добавить болванку
 						</Button>
 					</div>
 				</header>
 
-				{projectList}
+				{projectListMarkup}
 				
 			</main>
 		</>

@@ -4,10 +4,11 @@ import { BrowserRouter } from 'react-router-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import data from './mocks.js';
 
 ReactDOM.render((
   <BrowserRouter>
-    <App />
+    <App projectsList={data} />
   </BrowserRouter>
 ), document.getElementById('root'));
 
