@@ -10,6 +10,7 @@
     0px 4px 10px rgba( var(--color-nums-shadow), 0.09), 
     0px 13px 34px rgba( var(--color-nums-shadow), 0.05), 
     0px 60px 152px rgba( var(--color-nums-shadow), 0.03);
+  transition: transform 0.3s;
 }
 
 .project-list-card__title {
@@ -17,10 +18,19 @@
   display: -webkit-box;
   -webkit-line-clamp: 5;
   -webkit-box-orient: vertical;
+  transition: color 0.2s;
 }
 
 .project-list-card__footer {
   position: absolute;
   left: auto;
   bottom: var(--space-xl);
+}
+
+.project-list-card:hover {
+  transform: translateY(-8px);
+}
+
+.project-list-card:hover .project-list-card__title {
+  color: var(--color-typo-link);
 }

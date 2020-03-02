@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import block from 'bem-cn';
 import PageHeader from '../../components/Header';
-import { Text, Button, ChoiceGroup } from '@gpn-design/uikit';
-import ProjectListCard from '../../components/ProjectListCard';
-import ProjectListTableItem from '../../components/ProjectListTableItem';
+import { Button, ChoiceGroup } from '@gpn-design/uikit';
+import ProjectList from '../../components/ProjectList';
 
 const main = block('main-page');
 const filter = block('filter');
@@ -51,87 +50,6 @@ const AllProjectsPage = (props) => {
 		}
 	}
 
-	let projectListMarkup;
-
-	if (layout === 'grid') {
-		const grid = block('tpl-grid');
-		projectListMarkup = (
-			<div 
-				className={grid({
-					'l-ratio': '1-1-1',
-					'xl-ratio': '1-1-1-1',
-					'col-gap': 'half',
-					'row-gap': 'half'
-				})}
-			>
-				{projects.map((project) => {
-					return (
-						<ProjectListCard 
-							key={project.id}
-							number={project.id}
-							company={project.company} 
-							title={project.title}
-							stage={project.stage}
-							status={project.status}
-							badge={project.badge}
-						/>
-					)
-				})}
-			</div>
-		)
-	} else {
-		const table = block('pt-table');
-		projectListMarkup = (
-			<table 
-				className={table({
-					'view': 'default',
-					'vertical-align': 'top',
-					'border': 'between',
-					'stripe': 'even',
-					'space-a': 'm'
-				})}
-			>
-				<thead>
-					<tr className={table('row', {'view': 'head'})}>
-						<td className={table('col')}>
-							<Text tag='p' size='xs' view='secondary' transform='uppercase' spacing='xs'>Номер</Text>
-						</td>
-						<td className={table('col' )}>
-							<Text tag='p' size='xs' view='secondary' transform='uppercase' spacing='xs'>Название</Text>
-						</td>
-						<td className={table('col')}>
-							<Text tag='p' size='xs' view='secondary' transform='uppercase' spacing='xs'>Блок</Text>
-						</td>
-						<td className={table('col')}>
-							<Text tag='p' size='xs' view='secondary' transform='uppercase' spacing='xs'>Этап</Text>
-						</td>
-						<td className={table('col')}>
-							<Text tag='p' size='xs' view='secondary' transform='uppercase' spacing='xs'>Статус</Text>
-						</td>
-						<td className={table('col', {'align': 'right'})}>
-							<Text tag='p' size='xs' view='secondary' transform='uppercase' spacing='xs'>Экспертиза</Text>
-						</td>
-					</tr>
-				</thead>
-				<tbody>
-					{projects.map((project) => {
-						return (
-							<ProjectListTableItem 
-								key={project.id}
-								number={project.id}
-								company={project.company} 
-								title={project.title}
-								stage={project.stage}
-								status={project.status}
-								badge={project.badge}
-							/>
-						)
-					})}
-				</tbody>
-			</table>
-		)
-	}
-
   return (
 		<>
 			<PageHeader />
@@ -177,7 +95,7 @@ const AllProjectsPage = (props) => {
 					</div>
 				</header>
 
-				{projectListMarkup}
+					<ProjectList projects={projects} layout={layout}/>
 				
 			</main>
 		</>
