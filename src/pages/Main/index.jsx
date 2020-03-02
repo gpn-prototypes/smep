@@ -40,7 +40,7 @@ const filterItems = {
 };
 
 const AllProjectsPage = (props) => {
-	const { projectsList } = props;
+	const { projects } = props;
 	const [layout, setLayout] = useState('grid');
 	
 	const layoutChanger = () => {
@@ -64,7 +64,7 @@ const AllProjectsPage = (props) => {
 					'row-gap': 'half'
 				})}
 			>
-				{projectsList.map((project) => {
+				{projects.map((project) => {
 					return (
 						<ProjectListCard 
 							key={project.id}
@@ -114,7 +114,7 @@ const AllProjectsPage = (props) => {
 					</tr>
 				</thead>
 				<tbody>
-					{projectsList.map((project) => {
+					{projects.map((project) => {
 						return (
 							<ProjectListTableItem 
 								key={project.id}

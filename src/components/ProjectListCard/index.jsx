@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import block from 'bem-cn';
 // import { IconArrowLeft } from '@gpn-design/uikit';
 import { Text, Badge } from '@gpn-design/uikit';
@@ -15,7 +16,7 @@ const ProjectListCard = (props) => {
     : 'error';
 
   return (
-    <div className={b()}>
+    <Link to={`/project/${props.number}`} className={b()} >
       <div className={
         b('sup-info')
         .mix(d({'distribute': 'between', 'vertical-align': 'center', 'indent-b': 'xs'}))
@@ -39,7 +40,7 @@ const ProjectListCard = (props) => {
       <footer className={b('footer')}>
         <Badge wpSize='m' status={badgeStatus} view='stroked' form='round'>{props.badge}</Badge>
       </footer>
-    </div>
+    </Link>
   )
 };
 

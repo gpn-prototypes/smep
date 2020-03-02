@@ -1,5 +1,11 @@
 .project-list-table-item {
   position: relative;
+  border-collapse: collapse;
+}
+
+.project-list-table-item:hover {
+  cursor: pointer;
+  background: var(--color-bg-ghost) !important;
 }
 
 .badge1 { white-space: nowrap;}
