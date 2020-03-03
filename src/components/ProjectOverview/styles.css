@@ -1,0 +1,28 @@
+.project-overview {
+  --footer-height: 120px;
+  position: relative;
+  height: calc(100vh - var(--header-height));
+  box-sizing: border-box;
+  overflow-y: auto;
+  background: var(--color-bg-secondary);
+}
+
+.project-overview__back {
+  display: block;
+  text-decoration: none;
+}
+
+.project-overview__main {
+  height: calc(100% - var(--footer-height));
+  box-sizing: border-box;
+  padding-bottom: calc(var(--footer-height) + var(--space-3xl));
+}
+
+.project-overview__footer {
+  position: sticky;
+  bottom: var(--space-l);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: var(--footer-height);
+}

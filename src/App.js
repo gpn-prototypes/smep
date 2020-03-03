@@ -26,7 +26,7 @@ const App = (props) => {
           <AllProjectsPage projects={projects.projects} />
         </Route>
         <Route exact path="/project/:number">
-          <ProjectPage />
+          <ProjectPage projects={projects.projects}/>
         </Route>
         <Route path="/login" component={LoginPage} />
         <Route component={NotFoundPage} />

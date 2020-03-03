@@ -1,0 +1,4 @@
+.project-page {
+  display: grid;
+  grid-template-columns: 405px 1fr;
+}

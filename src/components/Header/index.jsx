@@ -1,12 +1,13 @@
 import React from 'react';
-import { Header, Logo, SearchBar, Login } from '@gpn-design/uikit';
+import { Text, Header, Logo, SearchBar, Login } from '@gpn-design/uikit';
+import './styles.css';
 
 const leftSide = [
 	{
 		indent: 'l',
 		children: (
 		<Logo>
-			<p className="text text_size_l text_weight_bold">Logotype</p>
+			<Text size='l' weight='bold'>СМЭП</Text>
 		</Logo>
 		),
 	},
