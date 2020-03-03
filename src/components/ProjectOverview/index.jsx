@@ -14,7 +14,52 @@ const stats = [
   { name: 'NPV', value: '0,248 млрд. ₽' },
   { name: 'PI', value: '1,3' },
   { name: 'DPP', value: '4,3 года' },
-  { name: 'IRR', value: '31,5%' },
+  // { name: 'IRR', value: '31,5%' },
+  // { name: 'Горизонт планирования', value: '5 лет' },
+  // { name: 'NPV', value: '0,248 млрд. ₽' },
+  // { name: 'PI', value: '1,3' },
+  // { name: 'DPP', value: '4,3 года' },
+  // { name: 'IRR', value: '31,5%' },
+  // { name: 'Горизонт планирования', value: '5 лет' },
+  // { name: 'NPV', value: '0,248 млрд. ₽' },
+  // { name: 'PI', value: '1,3' },
+  // { name: 'DPP', value: '4,3 года' },
+  // { name: 'IRR', value: '31,5%' },
+  // { name: 'Горизонт планирования', value: '5 лет' },
+  // { name: 'NPV', value: '0,248 млрд. ₽' },
+  // { name: 'PI', value: '1,3' },
+  // { name: 'DPP', value: '4,3 года' },
+  // { name: 'IRR', value: '31,5%' },
+  // { name: 'Горизонт планирования', value: '5 лет' },
+  // { name: 'NPV', value: '0,248 млрд. ₽' },
+  // { name: 'PI', value: '1,3' },
+  // { name: 'DPP', value: '4,3 года' },
+  // { name: 'IRR', value: '31,5%' },
+  // { name: 'Горизонт планирования', value: '5 лет' },
+  // { name: 'NPV', value: '0,248 млрд. ₽' },
+  // { name: 'PI', value: '1,3' },
+  // { name: 'DPP', value: '4,3 года' },
+  // { name: 'IRR', value: '31,5%' },
+  // { name: 'Горизонт планирования', value: '5 лет' },
+  // { name: 'NPV', value: '0,248 млрд. ₽' },
+  // { name: 'PI', value: '1,3' },
+  // { name: 'DPP', value: '4,3 года' },
+  // { name: 'IRR', value: '31,5%' },
+  // { name: 'Горизонт планирования', value: '5 лет' },
+  // { name: 'NPV', value: '0,248 млрд. ₽' },
+  // { name: 'PI', value: '1,3' },
+  // { name: 'DPP', value: '4,3 года' },
+  // { name: 'IRR', value: '31,5%' },
+  // { name: 'Горизонт планирования', value: '5 лет' },
+  // { name: 'NPV', value: '0,248 млрд. ₽' },
+  // { name: 'PI', value: '1,3' },
+  // { name: 'DPP', value: '4,3 года' },
+  // { name: 'IRR', value: '31,5%' },
+  // { name: 'Горизонт планирования', value: '5 лет' },
+  // { name: 'NPV', value: '0,248 млрд. ₽' },
+  // { name: 'PI', value: '1,3' },
+  // { name: 'DPP', value: '4,3 года' },
+  // { name: 'IRR', value: '31,5%' },
 ]
 
 const ProjectOverview = (props) => {
@@ -25,8 +70,8 @@ const ProjectOverview = (props) => {
     : 'error';
 
   return (
-    <aside className={`${b()} ${d({'space-t': 'xl', 'space-l': '3xl', 'space-r': 'xl'})}`}>
-      <div className={b('main')}>
+    <aside className={`${b()} ${d({'space-l': '3xl'})}`}>
+      <div className={b('main').mix(d({'space-t': 'xl', 'space-r': 'xl'}))}>
         <Link to={'/'} className={b('back').mix(d({'indent-b': 'm'}))}>
           <Text size='s' view='secondary'>Ко всем проектам</Text>
         </Link>
@@ -45,7 +90,7 @@ const ProjectOverview = (props) => {
         <DriverList />
       </div>
 
-      <div className={b('footer')}>
+      <div className={b('footer').mix(d({'space-l': '3xl', 'space-r': 'xl'}))}>
         <Button wpSize='l' view='primary' width='full'>Отправить на согласование</Button>
       </div>
       

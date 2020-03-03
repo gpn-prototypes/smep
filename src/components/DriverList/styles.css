@@ -1,0 +1,22 @@
+.driver-list {
+  margin: 0;
+  padding: 0;
+}
+
+.driver-list__item {
+
+}
+
+.driver-list__item:hover {
+  cursor: pointer;
+}
+
+.driver-list__name { transition: color 0.16s; }
+
+.driver-list__item:hover .driver-list__name {
+  color: var(--color-typo-link);
+}
+
+.driver-list__status {
+  flex-shrink: 0;
+}

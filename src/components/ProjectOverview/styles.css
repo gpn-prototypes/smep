@@ -3,7 +3,6 @@
   position: relative;
   height: calc(100vh - var(--header-height));
   box-sizing: border-box;
-  overflow-y: auto;
   background: var(--color-bg-secondary);
 }
 
@@ -13,16 +12,20 @@
 }
 
 .project-overview__main {
-  height: calc(100% - var(--footer-height));
+  height: 100%;
   box-sizing: border-box;
   padding-bottom: calc(var(--footer-height) + var(--space-3xl));
+  overflow-y: auto;
 }
 
 .project-overview__footer {
-  position: sticky;
-  bottom: var(--space-l);
+  position: absolute;
+  left: 0;
+  bottom: var(--space-xl);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  box-sizing: border-box;
+  width: 100%;
   height: var(--footer-height);
 }

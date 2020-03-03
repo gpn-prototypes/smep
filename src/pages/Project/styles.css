@@ -1,4 +1,5 @@
 .project-page {
+  --project-overview-width: 405px;
   display: grid;
-  grid-template-columns: 405px 1fr;
+  grid-template-columns: var(--project-overview-width) 1fr;
 }
