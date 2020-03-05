@@ -1,0 +1,17 @@
+.text-collapse_view_collapsed {
+  position: relative;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+}
+
+.text-collapse_view_collapsed::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  background: linear-gradient(to bottom, transparent 0%, var(--color-bg-default));
+}
