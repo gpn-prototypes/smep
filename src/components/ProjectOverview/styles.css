@@ -6,11 +6,6 @@
   background: var(--color-bg-secondary);
 }
 
-.project-overview__back {
-  display: block;
-  text-decoration: none;
-}
-
 .project-overview__main {
   height: 100%;
   box-sizing: border-box;

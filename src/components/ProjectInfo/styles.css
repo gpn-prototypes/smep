@@ -1,0 +1,5 @@
+.project-info {
+  margin: var(--space-5xl) auto 0;
+  width: 100%;
+  max-width: 700px;
+}

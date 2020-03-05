@@ -11,9 +11,9 @@ const StatsTable = (props) => {
 
   return (
     <ul className={`${b()} ${className}`}>
-      {items.map((item) => {
+      {items.map((item, index) => {
         return (
-          <li className={b('row').mix(d({'distribute': 'between', 'vertical-align': 'center', 'indent-b': '2xs'}))}>
+          <li key={`${item.name} ${index}`} className={b('row').mix(d({'distribute': 'between', 'vertical-align': 'center', 'indent-b': '2xs'}))}>
             <Text size='m' view='secondary' lineHeight='s' className={b('name')}>{item.name}</Text>
             <Text size='m' view='primary' lineHeight='s' className={b('value')}>{item.value}</Text>
           </li>

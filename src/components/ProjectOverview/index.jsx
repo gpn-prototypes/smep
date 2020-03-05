@@ -1,20 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import block from 'bem-cn';
-import { Text, Badge, Button } from '@gpn-design/uikit';
+import { Text, Badge, Button, IconBackward } from '@gpn-design/uikit';
 import StatsTable from '../StatsTable';
 import DriverList from '../DriverList';
+import BackLink from '../BackLink';
 import './styles.css';
 
 const b = block('project-overview');
 const d = block('decorator');
+const iPlus = block('pt-icon-plus');
 
 const stats = [
   { name: 'Горизонт планирования', value: '5 лет' },
   { name: 'NPV', value: '0,248 млрд. ₽' },
   { name: 'PI', value: '1,3' },
   { name: 'DPP', value: '4,3 года' },
-  // { name: 'IRR', value: '31,5%' },
+  { name: 'IRR', value: '31,5%' },
   // { name: 'Горизонт планирования', value: '5 лет' },
   // { name: 'NPV', value: '0,248 млрд. ₽' },
   // { name: 'PI', value: '1,3' },
@@ -72,9 +74,7 @@ const ProjectOverview = (props) => {
   return (
     <aside className={`${b()} ${d({'space-l': '3xl'})}`}>
       <div className={b('main').mix(d({'space-t': 'xl', 'space-r': 'xl'}))}>
-        <Link to={'/'} className={b('back').mix(d({'indent-b': 'm'}))}>
-          <Text size='s' view='secondary'>Ко всем проектам</Text>
-        </Link>
+        <BackLink linkTo='/'>Ко всем проектам</BackLink>
 
         <div className={d({'distribute': 'between', 'vertical-align': 'center', 'indent-b': 'xs'})}>
           <Text size='m' lineHeight='xs' transform='uppercase' spacing='xs'>{project.id}</Text>

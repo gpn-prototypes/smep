@@ -1,8 +1,9 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import block from 'bem-cn';
-import ProjectOverview from '../../components/ProjectOverview';
 import PageHeader from '../../components/Header';
+import ProjectOverview from '../../components/ProjectOverview';
+import ProjectInfo from '../../components/ProjectInfo';
 import './styles.css';
 
 const prj = block('project-page');
@@ -18,6 +19,7 @@ const ProjectPage = (props) => {
       <PageHeader />
       <main className={prj()}>
         <ProjectOverview project={currentProject}/>
+        <ProjectInfo project={currentProject} />
       </main>
     </>
   );

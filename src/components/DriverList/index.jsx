@@ -1,6 +1,6 @@
 import React from 'react';
 import block from 'bem-cn';
-import { Text, Badge, Button } from '@gpn-design/uikit';
+import { Text, Badge, Button, IconAdd } from '@gpn-design/uikit';
 import './styles.css';
 
 const b = block('driver-list');
@@ -52,7 +52,10 @@ const DriverList = (props) => {
         </li>
       </ul>
       
-      <Button wpSize='m' view='ghost' width='full'>Добавить новый драйвер</Button>
+      <Button wpSize='m' view='ghost' width='full' withIcon='left'>
+        Добавить новый драйвер
+        <IconAdd size={'s'} className={'button__icon'} />
+      </Button>
     </>
   )
 };
