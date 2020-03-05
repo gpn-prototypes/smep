@@ -1,6 +1,7 @@
 import React from 'react';
 import block from 'bem-cn';
 import { Text, Button, Badge, IconKebab } from '@gpn-design/uikit';
+import ProjectData from '../ProjectData';
 
 import './styles.css';
 
@@ -35,6 +36,8 @@ const ProjectInfo = (props) => {
       <Text tag='p' size='l' lineHeight='l' className={d({'indent-b': 'xl'})}>
         1. Минимизация рисков разграничения полномочий у пользователей: по предварительной оценке 40% SOD конфликтов будут покрыты компенсирующими контрольными процедурами СВК. 2. Повышение эффективности процесса управления рисками разграничения полномочий: высвобождение времени согласующих доступ на 0,5FTE в связи с уменьшением количества 
       </Text>
+
+      <ProjectData project={project} />
     </div>
   )
 };
