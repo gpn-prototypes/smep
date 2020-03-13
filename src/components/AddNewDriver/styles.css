@@ -1,5 +1,16 @@
+@keyframes listItemAppear {
+  from {
+    opacity: 0;
+    transform: translateY(40px); 
+  } to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .add-new-driver {
   overflow: hidden;
+  width: 100%;
   max-width: 1600px;
   margin: 0 auto;
 }
@@ -37,19 +48,45 @@
   background-color: var(--color-bg-border);
 }
 
-.add-new-driver__list-header_view_active::before {
+.add-new-driver__list-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
   height: 4px;
   background-color: var(--color-control-bg-checked);
+  opacity: 0;
+  transform: scaleX(0);
+  transform-origin: left bottom;
+}
+
+.add-new-driver__list-header_view_active::after {
+  opacity: 1;
+  transform: scaleX(1);
+  transition: transform 0.3s;
+}
+
+.add-new-driver__list-header_view_passed::after {
+  opacity: 1;
+  transform: scaleY(0.5);
+  transition: transform 0.1s;
 }
 
 .add-new-driver__item {
   border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.2s;
+  background: var(--color-bg-default);
+  transition: background 0.3s;
+  animation: listItemAppear 0.5s 0.2s both;
 }
 
+.add-new-driver__item:nth-child(1) { animation-delay: 0.08s; }
+.add-new-driver__item:nth-child(2) { animation-delay: 0.12s; }
+.add-new-driver__item:nth-child(3) { animation-delay: 0.16s; }
+
 .add-new-driver__item:hover {
-  background-color: var(--color-control-bg-default-hover);
+  background: var(--color-control-bg-default-hover);
 }
 
 .new-driver-card {
@@ -64,6 +101,14 @@
   border-radius: 8px;
   cursor: pointer;
 }
+
+.new-driver-card {
+  animation: listItemAppear 0.5s 0.24s both;
+}
+
+.new-driver-card:nth-child(1) { animation-delay: 0.08s; }
+.new-driver-card:nth-child(2) { animation-delay: 0.12s; }
+.new-driver-card:nth-child(3) { animation-delay: 0.16s; }
 
 .new-driver-card .new-driver-card__checkbox {
   position: absolute;

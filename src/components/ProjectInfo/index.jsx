@@ -18,7 +18,7 @@ const ProjectInfo = (props) => {
     : 'error';
 
   return (
-    <div className={b()}>
+    <div className={`${b()} ${className}`}>
       <div className={b('header').mix(d({'distribute': 'between', 'vertical-align': 'center', 'indent-b': 'm'}))}>
         <div className={d({'distribute': 'between', 'vertical-align': 'center', 'indent-b': 'xs'})}>
           <Text size='m' lineHeight='xs' transform='uppercase' spacing='xs'>{project.id}</Text>

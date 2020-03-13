@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import block from 'bem-cn';
-import { Text, Badge, Button, IconBackward } from '@gpn-design/uikit';
+import { Text, Badge, Button } from '@gpn-design/uikit';
 import StatsTable from '../StatsTable';
 import DriverList from '../DriverList';
 import BackLink from '../BackLink';

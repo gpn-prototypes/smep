@@ -10,7 +10,7 @@ const Comments = (props) => {
   const { className } = props;
 
   return (
-    <section className={b()}>
+    <section className={`${b()} ${className}`}>
       <Text tag='h2' size='xl' view='primary' className={ d({'indent-b': 'm'}) }>Комментарии</Text>
 
       <div className={b('new')}>

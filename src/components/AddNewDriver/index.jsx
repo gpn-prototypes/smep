@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import block from 'bem-cn';
-import { Text, Button, Checkbox } from '@gpn-design/uikit';
+import { Text, Checkbox } from '@gpn-design/uikit';
 import '../../mocks.js'
 import './styles.css';
 
@@ -8,19 +8,87 @@ const b = block('add-new-driver');
 const card = block('new-driver-card');
 const d = block('decorator');
 
+let secondLevelCollection = '';
+let thirdLevelCollection = '';
+
 const AddNewDriver = (props) => {
   const { drivers, className } = props;
   const firstLevelDrivers = drivers.firstLevel;
   const secondLevelDrivers = drivers.secondLevel;
   const thirdLevelDrivers = drivers.thirdLevel;
 
-  let currentLevel = 1;
-  const { level, setLevel } = useState(currentLevel);
+  const [ level, setLevel ] = useState(1);
 
-  const changeLevel = (newLevel) => {
-    currentLevel = newLevel;
-    return level;
+  let secondLevel;
+  let thirdLevel;
+
+  const buildSecondLevel = () => {
+    return secondLevelDrivers.map((driver, index) => {
+      return (
+        <li 
+          key={`${driver.name} ${index}`}
+          className={ b('item').mix(d({ 'space-v': 'xs', 'space-h': 's', 'indent-b': '2xs' })) }
+          onClick={ openThirdLevel }
+        >
+          <Text tag='p' size='m' view='primary' lineHeight='s' 
+            className={b('title')}>
+              {driver.name}
+          </Text>
+          <Text 
+            tag='span' size='xs' view='secondary' 
+            className={ b('subcompany').mix(d({ 'indent-t': '2xs' })) }>
+              {driver.subCompany}
+          </Text>
+        </li>
+      )
+    })
   };
+
+  const buildThirdLevel = () => {
+    return thirdLevelDrivers.map((driver, index) => {
+      return (
+        <li 
+          key={`${driver.name} ${index}`}
+          className={ d({ 'indent-b': 'xs' }).mix(card()) }
+        >
+          <Checkbox wpSize='m' className={ card('checkbox') }></Checkbox>
+          <Text tag='p' size='l' view='primary' lineHeight='xs' weight='bold'
+            className={ card('title').mix(d({ 'indent-b': 's' })) }>
+              {driver.name}
+          </Text>
+          <div className={ card('details') }>
+            <div className={ card('kpi') }>
+              <Text tag='p' size='xs' view='secondary' lineHeight='xs'>
+                Операционный КПЭ (в денежном выражении)
+              </Text>
+              <Text tag='p' size='s' view='primary' lineHeight='s'>
+                {driver.kpi}
+              </Text>
+            </div>
+            <div className={ card('params') }>
+              <Text tag='p' size='xs' view='secondary' lineHeight='xs'>
+                Физические параметры
+              </Text>
+              <Text tag='p' size='s' view='primary' lineHeight='s'>
+                {driver.params}
+              </Text>
+            </div>
+          </div>
+        </li>
+      )
+    })
+  };
+
+  const openSecondLevel = () => setLevel(2);
+  const openThirdLevel = () => setLevel(3);
+  
+  if (level === 2) {
+    secondLevel = buildSecondLevel();
+    secondLevelCollection = secondLevel;
+  } 
+  if (level === 3) {
+    thirdLevel = buildThirdLevel();
+  }
 
   return (
     <section className={ d({ 'space-t': '3xl' }).mix([ b(), className ]) }>
@@ -33,15 +101,23 @@ const AddNewDriver = (props) => {
 
           <ul className={b('list', { 'first-level': true }).mix(d({ 'space-b': '3xl' }))}>
             <Text tag='h2' size='l' weight='regular' 
-              className={ b('list-header', { 'view': 'active' }).mix(d({ 'indent-b': 'xl' })) }>
+              className={ 
+                b('list-header', { 
+                  'view': level === 1 ? 'active' 
+                  : level > 1 ? 'passed'
+                  : 'default' })
+                .mix(d({ 'indent-b': 'xl' })) 
+              }
+            >
               Процесс 1-го уровня
             </Text>
 
-            {firstLevelDrivers.map((driver) => {
+            {firstLevelDrivers.map((driver, index) => {
 					    return (
                 <li 
+                  key={`${driver.name} ${index}`}
                   className={ b('item').mix(d({ 'space-v': 'xs', 'space-h': 's', 'indent-b': '2xs' })) }
-                  onClick={ () => setLevel(changeLevel(2)) }
+                  onClick={ openSecondLevel }
                 >
                   <div className={ d({ 'distribute': 'left', 'vertical-align': 'baseline' }) }>
                     <Text 
@@ -62,68 +138,32 @@ const AddNewDriver = (props) => {
           <ul className={b('list', { 'second-level': true }).mix(d({ 'space-b': '3xl' }))}>
             <Text tag='h2' size='l' weight='regular' 
               className={ 
-                b('list-header', { 'view': currentLevel === '2' ? 'active' : 'default' })
+                b('list-header', { 
+                  'view': level === 2 ? 'active' 
+                  : level > 2 ? 'passed'
+                  : 'default' })
                 .mix(d({ 'indent-b': 'xl' })) 
               }
             >
               Процесс 2-го уровня
             </Text>
 
-            {secondLevelDrivers.map((driver) => {
-					    return (
-                <li 
-                  className={ b('item').mix(d({ 'space-v': 'xs', 'space-h': 's', 'indent-b': '2xs' })) }
-                  onClick={ () => setLevel(changeLevel(3)) }
-                >
-                  <Text tag='p' size='m' view='primary' lineHeight='s' 
-                    className={b('title')}>
-                      {driver.name}
-                  </Text>
-                  <Text 
-                    tag='span' size='xs' view='secondary' 
-                    className={ b('subcompany').mix(d({ 'indent-t': '2xs' })) }>
-                      {driver.subCompany}
-                  </Text>
-                </li>
-              )
-            })}
+            { secondLevel ? secondLevel : secondLevelCollection }
           </ul>
 
           <ul className={b('list', { 'third-level': true }).mix(d({ 'space-b': '3xl' }))}>
             <Text tag='h2' size='l' weight='regular' 
-              className={ b('list-header', { 'view': 'default' }).mix(d({ 'indent-b': 'xl' })) }>
+              className={ 
+                b('list-header', { 
+                  'view': level === 3 ? 'active' 
+                  : 'default' })
+                .mix(d({ 'indent-b': 'xl' })) 
+              }
+            >
               Цели процесса
             </Text>
 
-            {thirdLevelDrivers.map((driver) => {
-              return (
-                <li className={ d({ 'indent-b': 'xs' }).mix(card()) }>
-                  <Checkbox wpSize='m' className={ card('checkbox') }></Checkbox>
-                  <Text tag='p' size='l' view='primary' lineHeight='xs' weight='bold'
-                    className={ card('title').mix(d({ 'indent-b': 's' })) }>
-                      {driver.name}
-                  </Text>
-                  <div className={ card('details') }>
-                    <div className={ card('kpi') }>
-                      <Text tag='p' size='xs' view='secondary' lineHeight='xs'>
-                        Операционный КПЭ (в денежном выражении)
-                      </Text>
-                      <Text tag='p' size='s' view='primary' lineHeight='s'>
-                        {driver.kpi}
-                      </Text>
-                    </div>
-                    <div className={ card('params') }>
-                      <Text tag='p' size='xs' view='secondary' lineHeight='xs'>
-                        Физические параметры
-                      </Text>
-                      <Text tag='p' size='s' view='primary' lineHeight='s'>
-                        {driver.params}
-                      </Text>
-                    </div>
-                  </div>
-                </li>
-              )
-            })}
+            { thirdLevel }
           </ul>
 
         </div>
