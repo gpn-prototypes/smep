@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import block from 'bem-cn';
 import { Text, Badge, Button, IconAdd } from '@gpn-design/uikit';
 import './styles.css';
@@ -9,6 +9,19 @@ const list = block('pt-list');
 
 const DriverList = (props) => {
   // const {  } = props;
+  let [ isNew, setAdd ] = useState(0);
+
+  if (props.state) {
+    const { state } = props;
+
+    isNew = state.isNew;
+    setAdd = state.setAdd;
+  }
+
+  const addNewDriver = () => {
+    if (!isNew) { return 1 }
+    else { return 0 }
+  };
 
   return (
     <>
@@ -52,7 +65,7 @@ const DriverList = (props) => {
         </li>
       </ul>
       
-      <Button wpSize='m' view='ghost' width='full' withIcon='left'>
+      <Button wpSize='m' view='ghost' width='full' withIcon='left' onClick={ () => setAdd(addNewDriver) }>
         Добавить новый драйвер
         <IconAdd size={'s'} className={'button__icon'} />
       </Button>

@@ -1,5 +1,4 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
 import block from 'bem-cn';
 import { Text, Badge, Button, IconBackward } from '@gpn-design/uikit';
 import StatsTable from '../StatsTable';
@@ -9,7 +8,6 @@ import './styles.css';
 
 const b = block('project-overview');
 const d = block('decorator');
-const iPlus = block('pt-icon-plus');
 
 const stats = [
   { name: 'Горизонт планирования', value: '5 лет' },
@@ -17,55 +15,14 @@ const stats = [
   { name: 'PI', value: '1,3' },
   { name: 'DPP', value: '4,3 года' },
   { name: 'IRR', value: '31,5%' },
-  // { name: 'Горизонт планирования', value: '5 лет' },
-  // { name: 'NPV', value: '0,248 млрд. ₽' },
-  // { name: 'PI', value: '1,3' },
-  // { name: 'DPP', value: '4,3 года' },
-  // { name: 'IRR', value: '31,5%' },
-  // { name: 'Горизонт планирования', value: '5 лет' },
-  // { name: 'NPV', value: '0,248 млрд. ₽' },
-  // { name: 'PI', value: '1,3' },
-  // { name: 'DPP', value: '4,3 года' },
-  // { name: 'IRR', value: '31,5%' },
-  // { name: 'Горизонт планирования', value: '5 лет' },
-  // { name: 'NPV', value: '0,248 млрд. ₽' },
-  // { name: 'PI', value: '1,3' },
-  // { name: 'DPP', value: '4,3 года' },
-  // { name: 'IRR', value: '31,5%' },
-  // { name: 'Горизонт планирования', value: '5 лет' },
-  // { name: 'NPV', value: '0,248 млрд. ₽' },
-  // { name: 'PI', value: '1,3' },
-  // { name: 'DPP', value: '4,3 года' },
-  // { name: 'IRR', value: '31,5%' },
-  // { name: 'Горизонт планирования', value: '5 лет' },
-  // { name: 'NPV', value: '0,248 млрд. ₽' },
-  // { name: 'PI', value: '1,3' },
-  // { name: 'DPP', value: '4,3 года' },
-  // { name: 'IRR', value: '31,5%' },
-  // { name: 'Горизонт планирования', value: '5 лет' },
-  // { name: 'NPV', value: '0,248 млрд. ₽' },
-  // { name: 'PI', value: '1,3' },
-  // { name: 'DPP', value: '4,3 года' },
-  // { name: 'IRR', value: '31,5%' },
-  // { name: 'Горизонт планирования', value: '5 лет' },
-  // { name: 'NPV', value: '0,248 млрд. ₽' },
-  // { name: 'PI', value: '1,3' },
-  // { name: 'DPP', value: '4,3 года' },
-  // { name: 'IRR', value: '31,5%' },
-  // { name: 'Горизонт планирования', value: '5 лет' },
-  // { name: 'NPV', value: '0,248 млрд. ₽' },
-  // { name: 'PI', value: '1,3' },
-  // { name: 'DPP', value: '4,3 года' },
-  // { name: 'IRR', value: '31,5%' },
-  // { name: 'Горизонт планирования', value: '5 лет' },
-  // { name: 'NPV', value: '0,248 млрд. ₽' },
-  // { name: 'PI', value: '1,3' },
-  // { name: 'DPP', value: '4,3 года' },
-  // { name: 'IRR', value: '31,5%' },
-]
+];
+
 
 const ProjectOverview = (props) => {
-  const { project } = props;
+  const { project, state } = props;
+
+  const isNew = state.isNew;
+  const setAdd = state.setAdd;
 
   const badgeStatus = project.badge === 'Согласован' ? 'success' 
     : project.badge === 'На согласовании' ? 'warning'
@@ -87,7 +44,7 @@ const ProjectOverview = (props) => {
           items={stats}
         />
 
-        <DriverList />
+        <DriverList state={{ isNew, setAdd }} />
       </div>
 
       <div className={b('footer').mix(d({'space-l': '3xl', 'space-r': 'xl'}))}>

@@ -37,7 +37,7 @@ const TextCollapse = (props) => {
         <Text tag='p' size='l' lineHeight='l' className={d({'indent-b': 'm'})}>
           {children}
         </Text>
-        <Button wpSize='s' view='clear' withIcon='left' onClick={ () => setExpand(toggleExpand) }>
+        <Button wpSize='s' view='clear' withIcon='right' onClick={ () => setExpand(toggleExpand) }>
           Свернуть описание
           <IconArrowUp size='s' />
         </Button>

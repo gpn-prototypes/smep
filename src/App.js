@@ -9,7 +9,7 @@ import "@gpn-design/uikit/dist/style.css";
 import './App.css';
 
 const App = (props) => {
-  const { projects } = props;
+  const { data } = props;
   return (
     <div className="App 
         theme 
@@ -23,10 +23,10 @@ const App = (props) => {
       ">
       <Switch>
         <Route exact path="/">
-          <AllProjectsPage projects={projects.projects} />
+          <AllProjectsPage projects={data.projects} />
         </Route>
         <Route exact path="/project/:number">
-          <ProjectPage projects={projects.projects}/>
+          <ProjectPage projects={data.projects} drivers={data.drivers}/>
         </Route>
         <Route path="/login" component={LoginPage} />
         <Route component={NotFoundPage} />

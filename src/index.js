@@ -8,7 +8,7 @@ import data from './mocks.js';
 
 ReactDOM.render((
   <BrowserRouter>
-    <App projects={data} />
+    <App data={data} />
   </BrowserRouter>
 ), document.getElementById('root'));
 
