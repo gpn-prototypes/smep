@@ -8,7 +8,6 @@ import AddNewDriver from '../../components/AddNewDriver';
 import './styles.css';
 
 const prj = block('project-page');
-// const d = block('decorator');
 
 
 const ProjectPage = (props) => {
@@ -16,7 +15,7 @@ const ProjectPage = (props) => {
   const { projects, drivers } = props;
   const currentProject = projects.find( ({id}) => id === number);
 
-  const [ isNew, setAdd ] = useState(1);
+  const [ isNew, setAdd ] = useState(0);
 
   let main;
 

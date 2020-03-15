@@ -37,7 +37,7 @@ const ProjectOverview = (props) => {
           <Text size='m' lineHeight='xs' transform='uppercase' spacing='xs'>{project.id}</Text>
           <Badge wpSize='m' status={badgeStatus} view='stroked' form='round'>{project.badge}</Badge>
         </div>
-        <Text size='l' view='link' lineHeight='s' weight='bold' className={d({'indent-b': 'm'})}>{project.title}</Text>
+        <Text size='l' view={ isNew ? 'primary' : 'link' } lineHeight='s' weight='bold' className={d({'indent-b': 'm'})}>{project.title}</Text>
 
         <StatsTable 
           className={d({'indent-b': '3xl'})} 

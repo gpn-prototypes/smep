@@ -1,6 +1,9 @@
 .project-overview {
   --footer-height: 120px;
-  position: relative;
+  position: fixed;
+  left: 0;
+  top: var(--main-header-height);
+  width: var(--project-overview-width);
   height: calc(100vh - var(--main-header-height));
   box-sizing: border-box;
   background: var(--color-bg-secondary);
