@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import block from 'bem-cn';
-import { Text, Checkbox } from '@gpn-design/uikit';
+import { Text } from '@gpn-design/uikit';
+import NewDriverCard from '../NewDriverCard';
+
 import '../../mocks.js'
 import './styles.css';
 
@@ -17,7 +19,7 @@ const AddNewDriver = (props) => {
   const secondLevelDrivers = drivers.secondLevel;
   const thirdLevelDrivers = drivers.thirdLevel;
 
-  const [ level, setLevel ] = useState(1);
+  const [ level, setLevel ] = useState(1); 
 
   let secondLevel;
   let thirdLevel;
@@ -47,34 +49,12 @@ const AddNewDriver = (props) => {
   const buildThirdLevel = () => {
     return thirdLevelDrivers.map((driver, index) => {
       return (
-        <li 
-          key={`${driver.name} ${index}`}
-          className={ d({ 'indent-b': 'xs' }).mix(card()) }
-        >
-          <Checkbox wpSize='m' className={ card('checkbox') }></Checkbox>
-          <Text tag='p' size='l' view='primary' lineHeight='xs' weight='bold'
-            className={ card('title').mix(d({ 'indent-b': 's' })) }>
-              {driver.name}
-          </Text>
-          <div className={ card('details') }>
-            <div className={ card('kpi') }>
-              <Text tag='p' size='xs' view='secondary' lineHeight='xs'>
-                Операционный КПЭ (в денежном выражении)
-              </Text>
-              <Text tag='p' size='s' view='primary' lineHeight='s'>
-                {driver.kpi}
-              </Text>
-            </div>
-            <div className={ card('params') }>
-              <Text tag='p' size='xs' view='secondary' lineHeight='xs'>
-                Физические параметры
-              </Text>
-              <Text tag='p' size='s' view='primary' lineHeight='s'>
-                {driver.params}
-              </Text>
-            </div>
-          </div>
-        </li>
+        <NewDriverCard 
+          index={ index }
+          name={ driver.name }
+          kpi={ driver.kpi }
+          params={ driver.params }
+        />
       )
     })
   };
