@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import block from 'bem-cn';
 import PageHeader from '../../components/Header';
-import { Button, ChoiceGroup } from '@gpn-design/uikit';
+import { Button, ChoiceGroup, IconAdd } from '@gpn-design/uikit';
 import ProjectList from '../../components/ProjectList';
 
 const main = block('main-page');
@@ -72,24 +72,28 @@ const AllProjectsPage = (props) => {
 						<ChoiceGroup
 							isMultiple={false}
 							items={filterItems.types}
-							wpSize="s"
+							wpSize='s'
+							value={1}
 						/>
 					</div>
 					<div className={filter('right-side')}>
-						<Button 
+						{/* <Button 
 							wpSize='s' view='ghost' 
 							className={d({'indent-r': 's'})} 
 							onClick={() => setLayout(layoutChanger)}
 						>
 							Вид списка
-						</Button>
-						{/* <ChoiceGroup
+						</Button> */}
+						<ChoiceGroup
 							isMultiple={false}
 							items={filterItems.view}
 							wpSize='s'
 							className={d({'indent-r': 's'})}
-						/> */}
+							onChange={() => setLayout(layoutChanger)}
+							value={1}
+						/>
 						<Button wpSize='s' view='ghost' withIcon='left'>
+							<IconAdd size={'xs'} className={'button__icon'} />
 							Добавить болванку
 						</Button>
 					</div>
