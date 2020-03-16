@@ -5,10 +5,10 @@ import PageHeader from '../../components/Header';
 import ProjectOverview from '../../components/ProjectOverview';
 import ProjectInfo from '../../components/ProjectInfo';
 import AddNewDriver from '../../components/AddNewDriver';
+import DriverListProvider from './DriverListContext';
 import './styles.css';
 
 const prj = block('project-page');
-
 
 const ProjectPage = (props) => {
   let { number } = useParams();
@@ -22,17 +22,20 @@ const ProjectPage = (props) => {
   if (!isNew) {
     main = <ProjectInfo project={currentProject} />;
   } else {
-    main = <AddNewDriver drivers={drivers}/>
+    main = <AddNewDriver drivers={drivers} 
+      // newDrivers={newDrivers} 
+    />
   };
 
   return (
     <>
       <PageHeader />
-      <main className={prj()}>
-        <ProjectOverview project={currentProject} state={{ isNew, setAdd }} />
-        {main}
-        
-      </main>
+      <DriverListProvider>
+        <main className={prj()}>
+          <ProjectOverview project={currentProject} state={{ isNew, setAdd }} />
+          {main}  
+        </main>
+      </DriverListProvider>
     </>
   );
 };

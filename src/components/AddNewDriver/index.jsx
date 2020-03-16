@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import block from 'bem-cn';
 import { Text } from '@gpn-design/uikit';
 import NewDriverCard from '../NewDriverCard';
@@ -7,19 +7,27 @@ import '../../mocks.js'
 import './styles.css';
 
 const b = block('add-new-driver');
-const card = block('new-driver-card');
 const d = block('decorator');
 
 let secondLevelCollection = '';
-let thirdLevelCollection = '';
+// let thirdLevelCollection = '';
 
 const AddNewDriver = (props) => {
   const { drivers, className } = props;
   const firstLevelDrivers = drivers.firstLevel;
   const secondLevelDrivers = drivers.secondLevel;
   const thirdLevelDrivers = drivers.thirdLevel;
+  
+  const [ level, setLevel ] = useState(1);
+  // const [ newDrivers, setNewDriver ] = useState([]);
+  const [ isChosen, setChoice ] = useState(0);
 
-  const [ level, setLevel ] = useState(1); 
+  // const collectDriverList = (e) => {
+  //   console.log(e.target);
+  //   setNewDriver(1);
+  // }
+
+  // console.log(newDrivers);
 
   let secondLevel;
   let thirdLevel;
@@ -50,10 +58,12 @@ const AddNewDriver = (props) => {
     return thirdLevelDrivers.map((driver, index) => {
       return (
         <NewDriverCard 
+          key={`${driver.name} ${index}`}
           index={ index }
           name={ driver.name }
           kpi={ driver.kpi }
           params={ driver.params }
+          state={{ isChosen, setChoice }}
         />
       )
     })
