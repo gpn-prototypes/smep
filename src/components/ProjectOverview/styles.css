@@ -16,6 +16,17 @@
   overflow-y: auto;
 }
 
+.project-overview__title { transition: color 0.16s; }
+
+.project-overview__title:hover {
+  cursor: pointer;
+  color: var(--color-typo-link);
+}
+
+.project-overview__title_view_active:hover {
+  cursor: text;
+}
+
 .project-overview__footer {
   position: absolute;
   left: 0;

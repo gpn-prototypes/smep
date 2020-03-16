@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import block from 'bem-cn';
 import { Text, Badge, Button } from '@gpn-design/uikit';
 import StatsTable from '../StatsTable';
@@ -37,7 +38,20 @@ const ProjectOverview = (props) => {
           <Text size='m' lineHeight='xs' transform='uppercase' spacing='xs'>{project.id}</Text>
           <Badge wpSize='m' status={badgeStatus} view='stroked' form='round'>{project.badge}</Badge>
         </div>
-        <Text size='l' view={ isNew ? 'primary' : 'link' } lineHeight='s' weight='bold' className={d({'indent-b': 'm'})}>{project.title}</Text>
+        { 
+          isNew ? (
+            <Text size='l' view='primary' lineHeight='s' weight='bold' className={b('title').mix( d({'indent-b': 'm'}) )}
+              onClick={() => setAdd(0)}
+            >
+              {project.title}
+            </Text> 
+          ) : (
+            <Text size='l' view='link' lineHeight='s' weight='bold' className={b('title', { view: 'active'}).mix( d({'indent-b': 'm'}) )}>
+              {project.title}
+            </Text> 
+          )
+        }
+        
 
         <StatsTable 
           className={d({'indent-b': '3xl'})} 

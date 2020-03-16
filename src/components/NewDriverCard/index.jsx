@@ -13,11 +13,6 @@ const NewDriverCard = (props) => {
   let [ isChosen, setChoice ] = useState(0);
   const { addDriver, removeDriver } = useContext(DriverListContext);
 
-  // if (state) {
-  //   isChosen = state.isChosen;
-  //   setChoice = state.setChoice;
-  // }
-
   const toggleChoice = () => {
     if (isChosen) {
       removeDriver(name);
@@ -26,21 +21,17 @@ const NewDriverCard = (props) => {
     addDriver({ name: name, status: 'normal'});
     return 1;
   };
-
-  // const addDriverToList = () => { return name; }
   
   const chooseDriver = (e) => {
     setChoice(toggleChoice);
   };
-
-  // console.log(newDriver);
 
   return (
     <li 
       className={ b({ view: isChosen ? 'checked' : 'default' }).mix(d({ 'indent-b': 'xs' })) }
       onClick={chooseDriver}
     >
-      <Checkbox wpSize='m' className={ b('checkbox') } value={ isChosen ? true : false }></Checkbox>
+      <Checkbox wpSize='m' className={ b('checkbox') } value={ isChosen ? true : false } onChange={() => console.log(name)}></Checkbox>
       <Text tag='p' size='l' view='primary' lineHeight='xs' weight='bold'
         className={ b('title').mix(d({ 'indent-b': 's' })) }>
           { name }

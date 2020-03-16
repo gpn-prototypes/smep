@@ -44,9 +44,9 @@ const DriverList = (props) => {
         }
       >
         {
-          drivers.map((driver) => {
+          drivers.map((driver, index) => {
             return (
-              <li key={driver.name} className={b('item').mix(list('item'))}>
+              <li key={`${driver.name} ${index}`} className={b('item').mix(list('item'))}>
                 <Badge 
                   wpSize='s' status={ driver.status } isMinified={true} 
                   className={ b('status').mix(d({'indent-r': 'xs'})) } />
