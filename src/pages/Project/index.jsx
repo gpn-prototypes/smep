@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import block from 'bem-cn';
 import PageHeader from '../../components/Header';
 import ProjectOverview from '../../components/ProjectOverview';
 import ProjectInfo from '../../components/ProjectInfo';
 import AddNewDriver from '../../components/AddNewDriver';
-import DriverListProvider from './DriverListContext';
+import DriverListProvider from '../../context/DriverListContext';
+import { ProjectContext } from '../../context/ProjectContext';
 import './styles.css';
 
 const prj = block('project-page');
@@ -15,16 +16,17 @@ const ProjectPage = (props) => {
   const { projects, drivers } = props;
   const currentProject = projects.find( ({id}) => id === number);
 
-  const [ isNew, setAdd ] = useState(0);
+  // const [ isNew, setAdd ] = useState(0);
+  const { main, setMain } = useContext(ProjectContext);
 
-  let main;
+  let mainMarkup;
 
-  if (!isNew) {
-    main = <ProjectInfo project={currentProject} />;
+  if (main === 'new driver') {
+    mainMarkup = <AddNewDriver drivers={drivers} />
+  } else if (main.hasOwnProperty('name')) {
+    mainMarkup = <h1>{ main.name }</h1>
   } else {
-    main = <AddNewDriver drivers={drivers} 
-      // newDrivers={newDrivers} 
-    />
+    mainMarkup = <ProjectInfo project={currentProject} />;
   };
 
   return (
@@ -32,8 +34,8 @@ const ProjectPage = (props) => {
       <PageHeader />
       <DriverListProvider>
         <main className={prj()}>
-          <ProjectOverview project={currentProject} state={{ isNew, setAdd }} />
-          {main}  
+          <ProjectOverview project={currentProject} />
+          { mainMarkup }  
         </main>
       </DriverListProvider>
     </>

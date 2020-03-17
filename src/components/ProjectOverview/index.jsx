@@ -1,10 +1,10 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext } from 'react';
 import block from 'bem-cn';
 import { Text, Badge, Button } from '@gpn-design/uikit';
 import StatsTable from '../StatsTable';
 import DriverList from '../DriverList';
 import BackLink from '../BackLink';
+import { ProjectContext } from '../../context/ProjectContext';
 import './styles.css';
 
 const b = block('project-overview');
@@ -20,10 +20,9 @@ const stats = [
 
 
 const ProjectOverview = (props) => {
-  const { project, state } = props;
+  const { project } = props;
 
-  const isNew = state.isNew;
-  const setAdd = state.setAdd;
+  const { main, openProject } = useContext(ProjectContext);
 
   const badgeStatus = project.badge === 'Согласован' ? 'success' 
     : project.badge === 'На согласовании' ? 'warning'
@@ -39,9 +38,9 @@ const ProjectOverview = (props) => {
           <Badge wpSize='m' status={badgeStatus} view='stroked' form='round'>{project.badge}</Badge>
         </div>
         { 
-          isNew ? (
+          main !== 'project' ? (
             <Text size='l' view='primary' lineHeight='s' weight='bold' className={b('title').mix( d({'indent-b': 'm'}) )}
-              onClick={() => setAdd(0)}
+              onClick={ openProject }
             >
               {project.title}
             </Text> 
@@ -58,7 +57,7 @@ const ProjectOverview = (props) => {
           items={stats}
         />
 
-        <DriverList state={{ isNew, setAdd }} />
+        <DriverList />
       </div>
 
       <div className={b('footer').mix(d({'space-l': '3xl', 'space-r': 'xl'}))}>

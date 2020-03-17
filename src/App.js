@@ -4,6 +4,7 @@ import { LoginPage } from './pages/Login';
 import { NotFoundPage } from './pages/NotFound';
 import { AllProjectsPage } from './pages/Main';
 import { ProjectPage } from './pages/Project';
+import ProjectProvider from './context/ProjectContext';
 
 import "@gpn-design/uikit/dist/style.css";
 import './App.css';
@@ -26,7 +27,9 @@ const App = (props) => {
           <AllProjectsPage projects={data.projects} />
         </Route>
         <Route exact path="/project/:number">
-          <ProjectPage projects={data.projects} drivers={data.drivers}/>
+          <ProjectProvider>
+            <ProjectPage projects={data.projects} drivers={data.drivers}/>
+          </ProjectProvider>
         </Route>
         <Route path="/login" component={LoginPage} />
         <Route component={NotFoundPage} />

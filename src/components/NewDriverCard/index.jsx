@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import block from 'bem-cn';
 import { Text, Checkbox } from '@gpn-design/uikit';
-import { DriverListContext } from '../../pages/Project/DriverListContext';
+import { DriverListContext } from '../../context/DriverListContext';
 
 import './styles.css';
 

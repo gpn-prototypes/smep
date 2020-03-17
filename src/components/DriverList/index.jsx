@@ -1,7 +1,8 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import block from 'bem-cn';
 import { Text, Badge, Button, IconAdd } from '@gpn-design/uikit';
-import { DriverListContext } from '../../pages/Project/DriverListContext';
+import { DriverListContext } from '../../context/DriverListContext';
+import { ProjectContext } from '../../context/ProjectContext';
 import './styles.css';
 
 const b = block('driver-list');
@@ -9,23 +10,8 @@ const d = block('decorator');
 const list = block('pt-list');
 
 const DriverList = (props) => {
-  // const {  } = props;
-  let [ isNew, setAdd ] = useState(0);
   const { drivers } = useContext(DriverListContext);
-
-  if (props.state) {
-    const { state } = props;
-
-    isNew = state.isNew;
-    setAdd = state.setAdd;
-  }
-
-  
-
-  const addNewDriver = () => {
-    if (!isNew) { return 1 }
-    else { return 0 }
-  };
+  const { addNewDriver, openDriver } = useContext(ProjectContext);
 
   return (
     <>
@@ -46,7 +32,11 @@ const DriverList = (props) => {
         {
           drivers.map((driver, index) => {
             return (
-              <li key={`${driver.name} ${index}`} className={b('item', { 'status': driver.status }).mix(list('item'))}>
+              <li 
+                key={`${driver.name} ${index}`} 
+                className={b('item', { 'status': driver.status }).mix(list('item'))}
+                onClick={ () => openDriver({ name: driver.name, status: driver.status }) }
+              >
                 <Badge 
                   wpSize='s' status={ driver.status } isMinified={true} 
                   className={ b('status').mix(d({'indent-r': 'xs'})) } />
@@ -57,7 +47,7 @@ const DriverList = (props) => {
         }
       </ul>
       
-      <Button wpSize='m' view='ghost' width='full' withIcon='left' onClick={ () => setAdd(addNewDriver) }>
+      <Button wpSize='m' view='ghost' width='full' withIcon='left' onClick={ addNewDriver }>
         Добавить новый драйвер
         <IconAdd size={'s'} className={'button__icon'} />
       </Button>
