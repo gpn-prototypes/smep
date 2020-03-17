@@ -29,8 +29,8 @@ const ProjectOverview = (props) => {
     : 'error';
 
   return (
-    <aside className={`${b()} ${d({'space-l': '3xl'})}`}>
-      <div className={b('main').mix(d({'space-t': 'xl', 'space-r': 'xl'}))}>
+    <aside className={b()}>
+      <div className={b('main').mix(d({'space-t': 'xl', 'space-l': '3xl', 'space-r': 'xl'}))}>
         <BackLink linkTo='/'>Ко всем проектам</BackLink>
 
         <div className={d({'distribute': 'between', 'vertical-align': 'center', 'indent-b': 'xs'})}>

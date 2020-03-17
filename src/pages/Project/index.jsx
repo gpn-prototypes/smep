@@ -6,6 +6,7 @@ import ProjectOverview from '../../components/ProjectOverview';
 import ProjectInfo from '../../components/ProjectInfo';
 import AddNewDriver from '../../components/AddNewDriver';
 import DriverListProvider from '../../context/DriverListContext';
+import Driver from '../../components/Driver';
 import { ProjectContext } from '../../context/ProjectContext';
 import './styles.css';
 
@@ -24,7 +25,7 @@ const ProjectPage = (props) => {
   if (main === 'new driver') {
     mainMarkup = <AddNewDriver drivers={drivers} />
   } else if (main.hasOwnProperty('name')) {
-    mainMarkup = <h1>{ main.name }</h1>
+    mainMarkup = <Driver driver={ main } />
   } else {
     mainMarkup = <ProjectInfo project={currentProject} />;
   };

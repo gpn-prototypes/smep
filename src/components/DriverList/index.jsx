@@ -9,9 +9,15 @@ const b = block('driver-list');
 const d = block('decorator');
 const list = block('pt-list');
 
+let activeDriver = null;
+
 const DriverList = (props) => {
   const { drivers } = useContext(DriverListContext);
   const { addNewDriver, openDriver } = useContext(ProjectContext);
+
+  const setDriver = (e) => {
+    activeDriver = e.currentTarget.getAttribute('data-key');
+  };
 
   return (
     <>
@@ -25,17 +31,25 @@ const DriverList = (props) => {
             'vertical-align': 'center'
           }).mix([
             b(),
-            d({'indent-b': 's',})
+            d({'indent-b': 'm',})
           ])
         }
       >
         {
           drivers.map((driver, index) => {
+            const id = `${driver.name} ${index}`;
             return (
               <li 
-                key={`${driver.name} ${index}`} 
-                className={b('item', { 'status': driver.status }).mix(list('item'))}
-                onClick={ () => openDriver({ name: driver.name, status: driver.status }) }
+                key={id} data-key={id} 
+                className={
+                  b('item', { status: driver.status, view: activeDriver === id ? 'active' : 'default' })
+                  .mix(list('item'))
+                }
+                onClick={ (e) => {
+                    setDriver(e);
+                    openDriver({ name: driver.name, status: driver.status });
+                  }
+                }
               >
                 <Badge 
                   wpSize='s' status={ driver.status } isMinified={true} 
