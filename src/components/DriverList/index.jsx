@@ -46,7 +46,7 @@ const DriverList = (props) => {
         {
           drivers.map((driver, index) => {
             return (
-              <li key={`${driver.name} ${index}`} className={b('item').mix(list('item'))}>
+              <li key={`${driver.name} ${index}`} className={b('item', { 'status': driver.status }).mix(list('item'))}>
                 <Badge 
                   wpSize='s' status={ driver.status } isMinified={true} 
                   className={ b('status').mix(d({'indent-r': 'xs'})) } />
@@ -55,11 +55,6 @@ const DriverList = (props) => {
             )
           })
         }
-        {/* <li className={b('item').mix(list('item'))}>
-          <Badge wpSize='s' status='normal' isMinified={true} className={b('status').mix(d({'indent-r': 'xs'}))}></Badge>
-          <Text tag='p' size='m' view='primary' lineHeight='xs' className={b('name')}>Повышение эффективности использования складских помещений</Text>
-        </li> */}
-        {/* { newDrivers } */}
       </ul>
       
       <Button wpSize='m' view='ghost' width='full' withIcon='left' onClick={ () => setAdd(addNewDriver) }>

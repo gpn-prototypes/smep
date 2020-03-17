@@ -4,8 +4,39 @@
 }
 
 .driver-list__item {
-
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
 }
+
+.driver-list__item_status_normal::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  /* background: linear-gradient(135deg, transparent, var(--color-bg-normal) 40%, var(--color-bg-normal) 60%, transparent); */
+  background: linear-gradient(to right, var(--color-bg-normal), transparent 50%);
+  opacity: 0.14;
+}
+
+/* @keyframes driverListNewItem {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  } 
+  50% { opacity: 0.3; }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.driver-list__item_status_normal:last-child::before {
+  animation: driverListNewItem 3s both;
+} */
 
 .driver-list__item:hover {
   cursor: pointer;

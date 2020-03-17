@@ -77,13 +77,6 @@ const AllProjectsPage = (props) => {
 						/>
 					</div>
 					<div className={filter('right-side')}>
-						{/* <Button 
-							wpSize='s' view='ghost' 
-							className={d({'indent-r': 's'})} 
-							onClick={() => setLayout(layoutChanger)}
-						>
-							Вид списка
-						</Button> */}
 						<ChoiceGroup
 							isMultiple={false}
 							items={filterItems.view}

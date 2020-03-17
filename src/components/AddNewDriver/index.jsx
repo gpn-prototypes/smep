@@ -10,7 +10,7 @@ const b = block('add-new-driver');
 const d = block('decorator');
 
 let secondLevelCollection = '';
-// let thirdLevelCollection = '';
+let firstCategory = '';
 
 const AddNewDriver = (props) => {
   const { drivers, className } = props;
@@ -19,15 +19,7 @@ const AddNewDriver = (props) => {
   const thirdLevelDrivers = drivers.thirdLevel;
   
   const [ level, setLevel ] = useState(1);
-  // const [ newDrivers, setNewDriver ] = useState([]);
   const [ isChosen, setChoice ] = useState(0);
-
-  // const collectDriverList = (e) => {
-  //   console.log(e.target);
-  //   setNewDriver(1);
-  // }
-
-  // console.log(newDrivers);
 
   let secondLevel;
   let thirdLevel;
@@ -36,8 +28,11 @@ const AddNewDriver = (props) => {
     return secondLevelDrivers.map((driver, index) => {
       return (
         <li 
-          key={`${driver.name} ${index}`}
-          className={ b('item').mix(d({ 'space-v': 'xs', 'space-h': 's', 'indent-b': '2xs' })) }
+          key={`${driver.name} ${index}`} data-key={`${driver.name} ${index}` }
+          className={
+            b('item')
+            .mix(d({ 'space-v': 'xs', 'space-h': 's', 'indent-b': '2xs' }))
+          }
           onClick={ openThirdLevel }
         >
           <Text tag='p' size='m' view='primary' lineHeight='s' 
@@ -69,8 +64,16 @@ const AddNewDriver = (props) => {
     })
   };
 
-  const openSecondLevel = () => setLevel(2);
-  const openThirdLevel = () => setLevel(3);
+  const openSecondLevel = (e) => {
+    firstCategory = e.currentTarget.getAttribute('data-key');
+    setLevel(2);
+  }
+
+  const openThirdLevel = (e) => {
+    const el = e.currentTarget;
+    el.classList.add('add-new-driver__item_view_active');
+    setLevel(3);
+  }
   
   if (level === 2) {
     secondLevel = buildSecondLevel();
@@ -105,8 +108,10 @@ const AddNewDriver = (props) => {
             {firstLevelDrivers.map((driver, index) => {
 					    return (
                 <li 
-                  key={`${driver.name} ${index}`}
-                  className={ b('item').mix(d({ 'space-v': 'xs', 'space-h': 's', 'indent-b': '2xs' })) }
+                  key={`${driver.name} ${index}`} data-key={`${driver.name} ${index}`}
+                  className={ 
+                    b('item', { view: firstCategory === `${driver.name} ${index}` ? 'active' : 'default' })
+                    .mix(d({ 'space-v': 'xs', 'space-h': 's', 'indent-b': '2xs' })) }
                   onClick={ openSecondLevel }
                 >
                   <div className={ d({ 'distribute': 'left', 'vertical-align': 'baseline' }) }>
