@@ -6,7 +6,7 @@ import { AllProjectsPage } from './pages/Main';
 import { ProjectPage } from './pages/Project';
 import ProjectProvider from './context/ProjectContext';
 
-import "./dd.css";
+import "@gpn-design/uikit/dist/style.css";
 import './App.css';
 
 const App = (props) => {
