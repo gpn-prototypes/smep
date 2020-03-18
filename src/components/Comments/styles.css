@@ -1,9 +1,0 @@
-.comments__new {
-  padding: var(--space-l);
-  border-radius: 8px;
-  background: var(--color-bg-secondary);
-}
-
-.comments__input {
-  min-height: 100px;
-}
