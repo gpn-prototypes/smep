@@ -16,7 +16,7 @@ const ProjectListCard = (props) => {
     : 'error';
 
   return (
-    <Link to={`/project/${props.number}`} className={b()} >
+    <Link to={`/smep/project/${props.number}`} className={b()} >
       <div className={
         b('sup-info')
         .mix(d({'distribute': 'between', 'vertical-align': 'center', 'indent-b': 'xs'}))

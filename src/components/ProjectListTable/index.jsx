@@ -49,7 +49,7 @@ const ProjectListTable = (props) => {
       <tbody>
         {projects.map((project) => {
           const openProject = () => {
-            history.push(`/project/${project.id}`)
+            history.push(`/smep/project/${project.id}`)
           };
 
           const badgeStatus = project.badge === 'Согласован' ? 'success' 

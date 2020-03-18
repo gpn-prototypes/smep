@@ -23,15 +23,15 @@ const App = (props) => {
         theme_space_gpn-default
       ">
       <Switch>
-        <Route exact path="/">
+        <Route exact path="/smep/">
           <AllProjectsPage projects={data.projects} />
         </Route>
-        <Route exact path="/project/:number">
+        <Route exact path="/smep/project/:number">
           <ProjectProvider>
             <ProjectPage projects={data.projects} drivers={data.drivers}/>
           </ProjectProvider>
         </Route>
-        <Route path="/login" component={LoginPage} />
+        <Route path="/smep/login" component={LoginPage} />
         <Route component={NotFoundPage} />
       </Switch>
     </div>

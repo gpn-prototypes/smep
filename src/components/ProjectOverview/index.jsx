@@ -31,7 +31,7 @@ const ProjectOverview = (props) => {
   return (
     <aside className={b()}>
       <div className={b('main').mix(d({'space-t': 'xl', 'space-l': '3xl', 'space-r': 'xl'}))}>
-        <BackLink linkTo='/'>Ко всем проектам</BackLink>
+        <BackLink linkTo='/smep/'>Ко всем проектам</BackLink>
 
         <div className={d({'distribute': 'between', 'vertical-align': 'center', 'indent-b': 'xs'})}>
           <Text size='m' lineHeight='xs' transform='uppercase' spacing='xs'>{project.id}</Text>
