@@ -2,11 +2,12 @@ import React from 'react';
 import { Text, Header, Logo, SearchBar, Login } from '@gpn-design/uikit';
 import './styles.css';
 
+
 const leftSide = [
 	{
 		indent: 'l',
 		children: (
-		<Logo>
+		<Logo locked={true} href='/smep/'>
 			<Text size='l' weight='bold'>СМЭП</Text>
 		</Logo>
 		),

@@ -18,7 +18,7 @@ const ProjectPage = (props) => {
   const currentProject = projects.find( ({id}) => id === number);
 
   // const [ isNew, setAdd ] = useState(0);
-  const { main, setMain } = useContext(ProjectContext);
+  const { main } = useContext(ProjectContext);
 
   let mainMarkup;
 
